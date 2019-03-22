@@ -4,6 +4,7 @@ import com.xy.common.constant.Status;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 @Data
 public class BaseResponse<T> implements Serializable {
@@ -19,6 +20,17 @@ public class BaseResponse<T> implements Serializable {
         baseResponse.setData(t);
         return baseResponse;
     }
+
+    public static <T>BaseResponse ok(T t){
+        BaseResponse baseResponse = new BaseResponse();
+        baseResponse.setCode(Status.SUCESS.getCode());
+        baseResponse.setMsg(Status.SUCESS.getMsg());
+        List list = new ArrayList();
+        list.add(t);
+        baseResponse.setData(list);
+        return baseResponse;
+    }
+
 
     public static BaseResponse ok(){
         BaseResponse baseResponse = new BaseResponse();
